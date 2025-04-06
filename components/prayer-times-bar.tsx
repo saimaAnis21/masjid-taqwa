@@ -1,12 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock, MapPin } from "lucide-react";
-
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 // Sample prayer times (in a real app, you would fetch these from an API)
 const SAMPLE_PRAYER_TIMES = {
@@ -105,7 +99,7 @@ export function PrayerTimesBar() {
       setNextPrayer(next);
 
       // Calculate countdown to next prayer
-      const nextPrayerTime = SAMPLE_PRAYER_TIMES[next];
+      const nextPrayerTime = SAMPLE_PRAYER_TIMES[next||'fajr'];
       const nextPrayerDate = getPrayerTimeAsDate(nextPrayerTime);
 
       // If next prayer is tomorrow (e.g., current is Isha, next is Fajr)

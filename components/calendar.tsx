@@ -5,6 +5,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import EventTag from "./event-tag";
 
+type Event = {
+  id: number;
+  title: string;
+  startTime: string;
+  endTime: string;
+  color: string;
+};
+type RecurringEvent = Event & {dayOfWeek?: number;};
+
+type OneTimeEvent = Event & {date?: Date;}
+
 // Sample recurring event
 const recurringEvents = [
   {
@@ -114,7 +125,7 @@ export default function Calendar() {
 
   // Check if a date has events
   const getEventsForDate = (date: Date) => {
-    const events = [];
+    const events: RecurringEvent[] | OneTimeEvent[] = [];
 
     // Check for recurring events
     recurringEvents.forEach((event) => {
